@@ -1,0 +1,37 @@
+
+.user-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.user-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.user-list::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.user-list::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+
+.email-container {
+    white-space: nowrap; /* Ensures the text stays on one line */
+    overflow: hidden; /* Hides any overflow text */
+    text-overflow: ellipsis; /* Shows ellipsis (...) for overflow text */
+    max-width: 200px; /* Adjust this value as needed */
+}
+
+.email-container:hover .email-text {
+    white-space: normal; /* Allows the text to wrap on hover */
+    overflow: visible; /* Shows the overflow text */
+    max-width: none; /* Removes the maximum width constraint */
+    z-index: 9999; /* Ensure tooltip appears above other elements */
+    position: absolute; /* Position the tooltip */
+    background-color: #fff; /* Background color of tooltip */
+    border: 1px solid #ccc; /* Border for tooltip */
+    padding: 5px; /* Padding for tooltip */
+    border-radius: 5px; /* Rounded corners for tooltip */
+}
