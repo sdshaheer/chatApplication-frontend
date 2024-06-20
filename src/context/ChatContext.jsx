@@ -11,6 +11,7 @@ export const ChatProvider = ({ children }) => {
     const [chats, setChats] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null)
     const [isChatsFetching, setIsChatsFetching] = useState(false)
+    const [notifications, setNotifications] = useState([])
 
     useEffect(() => {
         if (user) {
@@ -45,6 +46,8 @@ export const ChatProvider = ({ children }) => {
         fetchChats,
         selectedChat,
         setSelectedChat,
+        notifications,
+        setNotifications,
         clearChatContext
     }
 

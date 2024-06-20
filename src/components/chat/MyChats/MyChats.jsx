@@ -7,13 +7,13 @@ import { useAuth } from '../../../context/AuthContext';
 import { useChat } from '../../../context/ChatContext';
 import CreateNewGroupChat from './CreateNewGroupChat';
 import Skeleton from 'react-loading-skeleton';
-import { getChatPicture } from '../../../config/ChatLogics';
+import { getChatPicture, getChatName } from '../../../config/ChatLogics';
 import './MyChats.css'
 
 const MyChats = () => {
 
     // const { user } = useAuth()
-    const { isChatsFetching, chats } = useChat()
+    const { isChatsFetching, chats, notifications, setNotifications } = useChat()
     // const [isLoading, setIsLoading] = useState(false)
     const [openNewGroupForm, setOpenNewGroupForm] = useState(false)
 
@@ -58,12 +58,18 @@ const MyChats = () => {
                     {isChatsFetching ? <ShowLoadingSkeleton /> :
                         <div className='mychats flex flex-col gap-2 h-full w-full absolute overflow-auto '>
                             {chats.map((chat) => {
-                                return <SingleChat chat={chat} key={chat?._id} />
+                                return (
+                                    <SingleChat
+                                        chat={chat}
+                                        key={chat?._id}
+                                        notifications={notifications}
+                                        setNotifications={setNotifications}
+                                    />
+                                )
                             })}
                         </div>
                     }
                 </div>
-
             </div>
             {openNewGroupForm &&
                 <CreateNewGroupChat
@@ -78,33 +84,42 @@ const MyChats = () => {
 export default MyChats
 
 
-const SingleChat = ({ chat }) => {
+const SingleChat = ({ chat, notifications, setNotifications }) => {
     const { user } = useAuth()
     const { selectedChat, setSelectedChat } = useChat()
-    const baseStyleOfChat = 'flex items-center rounded-md  gap-3 p-2 mr-1 cursor-pointer bg-slate-200'
+    const baseStyleOfChat = 'flex items-center rounded-md  gap-3 p-2 mr-1 cursor-pointer'
     const hoverEffect = "hover:bg-slate-300";
 
+    const isSelectedChat = selectedChat && selectedChat._id === chat._id;
+    const newMessages = notifications?.filter((message) => message.chat?._id === chat?._id)
+
+    // console.log('in single chat', notifications, newMessages, chat?._id)
     const handleSelectChat = () => {
+        const filteredNotifications = notifications?.filter((message) => message.chat?._id !== chat?._id)
+        setNotifications([...filteredNotifications])
         setSelectedChat(chat)
     }
 
-    const isSelectedChat = selectedChat && selectedChat._id === chat._id;
-
     return (
         <div
-            className={`${baseStyleOfChat} ${isSelectedChat ? 'bg-cyan-300' : hoverEffect}`}
-            onClick={() => handleSelectChat()}
+            className={`${baseStyleOfChat} ${isSelectedChat ? 'bg-cyan-300' : `bg-slate-200 ${hoverEffect}`}`}
+            onClick={handleSelectChat}
         >
-            <div>
+            <div className=''>
                 <img
                     src={getChatPicture(chat, user)}
                     alt='profile picture'
                     className="rounded-full w-10 h-10 object-cover"
                 />
             </div>
-            <div>
-                <div className='font-semibold '>{chat?.chatName ?? ''}</div>
-                <div className='flex gap-1'>message here ....</div>
+            <div className='flex-grow'>
+                <div className='font-semibold '>{getChatName(chat, user)}</div>
+                <div className='flex justify-between items-center'>
+                    <div className=''>{newMessages?.length > 0 ? newMessages?.[0]?.content?.substring(0, 15) : chat?.latestMessage?.content?.substring(0, 15)}</div>
+                    {newMessages?.length > 0 &&
+                        <div className='rounded-full w-5 h-5 bg-green-600 flex justify-center items-center text-[12px] text-white'>{newMessages?.length}</div>
+                    }
+                </div>
             </div>
         </div>
     )

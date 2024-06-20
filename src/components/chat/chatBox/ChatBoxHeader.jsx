@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { getChatPicture } from '../../../config/ChatLogics';
+import { getChatPicture, getChatName } from '../../../config/ChatLogics';
 import { LiaEditSolid } from "react-icons/lia";
 import { useAuth } from '../../../context/AuthContext';
 import { useChat } from '../../../context/ChatContext';
@@ -20,7 +20,7 @@ const ChatBoxHeader = ({ handleMoveBack }) => {
 
     return (
         <>
-            <div className='flex justify-between items-center border-2 p-2 rounded-md'>
+            <div className='flex justify-between items-center border-2 p-2 rounded-md  bg-slate-200'>
                 <div className='flex items-center gap-3'>
                     <div className='block md:hidden cursor-pointer' onClick={handleMoveBack}>
                         <IoIosArrowRoundBack size={24} />
@@ -33,7 +33,7 @@ const ChatBoxHeader = ({ handleMoveBack }) => {
                                 className="rounded-full w-8 h-8 object-cover"
                             />
                         </div>
-                        <div>{selectedChat?.chatName ?? ''}</div>
+                        <div>{getChatName(selectedChat, user)}</div>
                     </div>
                 </div>
                 <div>
