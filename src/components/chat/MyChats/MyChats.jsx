@@ -55,6 +55,9 @@ const MyChats = () => {
                     </div>
                 </div>
                 <div className='flex-grow relative p-1'>
+                    {!isChatsFetching && chats?.length === 0 &&
+                        <div className='flex justify-center mt-16 h-full text-[18px] text-gray-500'>No chats found</div>
+                    }
                     {isChatsFetching ? <ShowLoadingSkeleton /> :
                         <div className='mychats flex flex-col gap-2 h-full w-full absolute overflow-auto '>
                             {chats.map((chat) => {

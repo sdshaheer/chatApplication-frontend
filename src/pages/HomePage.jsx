@@ -14,6 +14,8 @@ const HomePage = () => {
         }
     }
 
+    console.log('isLogin', isLoginPage)
+
     return (
         <div className='flex justify-center items-center'>
             <div className='flex flex-col justify-center items-center bg-white p-8 border rounded-lg sm:w-3/6 md:w-2/6 mt-20 gap-10'>

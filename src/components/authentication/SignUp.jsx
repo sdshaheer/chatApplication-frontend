@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Spinner from '../../customComponents/Spinner';
 import { basePath } from '../../utils/basePath';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = ({ setIsLoginPage }) => {
     const [data, setData] = useState({
@@ -16,6 +17,8 @@ const SignUp = ({ setIsLoginPage }) => {
     })
     const [isLoading, setIsLoading] = useState(false)
     const [formErrors, setFormErrors] = useState({})
+
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         let { name, value } = e.target
@@ -58,18 +61,19 @@ const SignUp = ({ setIsLoginPage }) => {
         try {
             setIsLoading(true)
             const firebaseResponse = await doSignUpWithEmailAndPassword(data.email, data.password)
-            console.log('sign up with email and password', firebaseResponse)
             const dataViaGmailLogin = {
                 uuid: firebaseResponse?.user?.uid,
                 name: data?.name,
                 email: firebaseResponse?.user?.email
             }
-            const mongoResponse = await axios.post(`${basePath}/userAuth/createUser`, { ...dataViaGmailLogin })
-            setIsLoginPage(true)
+            await axios.post(`${basePath}/userAuth/createUser`, { ...dataViaGmailLogin })
+
+            // setIsLoginPage(true)
             toast.success('Account created successfully')
+            navigate('/chats')
 
         } catch (error) {
-            console.error('error in logging with email and password', error.message)
+            console.error('error in logging with email and password', error)
             toast.error(error?.message)
         } finally {
             setIsLoading(false)

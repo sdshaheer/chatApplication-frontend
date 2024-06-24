@@ -73,7 +73,7 @@ const Login = () => {
                 name: firebaseResponse?.user?.displayName,
                 email: firebaseResponse?.user?.email
             }
-            const mongoResponse = await axios.post(`${basePath}/userAuth/createUser`, { ...dataViaGmailLogin })
+            await axios.post(`${basePath}/userAuth/createUser`, { ...dataViaGmailLogin })
             navigate('/chats')
         } catch (error) {
             console.error('error in logging with google account', error)
