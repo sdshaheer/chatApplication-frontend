@@ -109,30 +109,6 @@ const SignUp = ({ setIsLoginPage }) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    {/* <TextField
-                        id="password"
-                        name="password"
-                        label="Password"
-                        type={showPassword ? 'text' : 'password'}
-                        size="medium"
-                        value={data.password}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                        error={!!formErrors.password}
-                        helperText={formErrors.password}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    {showPassword ? (
-                                        <MdVisibility onClick={() => setShowPassword(false)} style={{ cursor: 'pointer' }} />
-                                    ) : (
-                                        <MdVisibilityOff onClick={() => setShowPassword(true)} style={{ cursor: 'pointer' }} />
-                                    )}
-                                </InputAdornment>
-                            ),
-                        }}
-                    /> */}
                     <Password
                         id="password"
                         name="password"
@@ -143,19 +119,6 @@ const SignUp = ({ setIsLoginPage }) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    {/* <TextField
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        label="Confirm Password"
-                        type="password"
-                        size="medium"
-                        value={data.confirmPassword}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                        error={!!formErrors.confirmPassword}
-                        helperText={formErrors.confirmPassword}
-                    /> */}
                     <Password
                         id="confirmPassword"
                         name="confirmPassword"
