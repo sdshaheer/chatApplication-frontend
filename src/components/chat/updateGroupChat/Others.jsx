@@ -52,6 +52,29 @@ const Others = ({ handleClose }) => {
         }
     }
 
+    const handleExitGroup = async (e) => {
+        e.preventDefault()
+
+
+        try {
+            setIsLoading(true)
+            const response = await axios.post(`${basePath}/chat/exitGroup`,
+                { chatId: selectedChat?._id },
+                { headers: { Authorization: user?.accessToken } }
+            )
+            handleClose()
+            fetchChats()
+            setSelectedChat(null)
+            toast.success('You left the group successfully')
+
+        } catch (error) {
+            console.log('error in exiting the group chat ', error)
+            toast.error('something went wrong')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     const handleFileChange = async (e) => {
         if (e.target.files[0]) {
             const file = e.target.files[0];
@@ -107,7 +130,11 @@ const Others = ({ handleClose }) => {
                         onChange={(e) => setGroupName(e.target.value)}
                     />
 
-                    <div className='flex justify-end mt-3'>
+                    <div className='flex justify-between mt-5'>
+                        <button
+                            className='p-1 bg-red-600 rounded w-2/5 text-white text-center cursor-pointer'
+                            onClick={handleExitGroup}
+                        >Exit Group</button>
                         <button
                             className='p-1 bg-green-700 rounded w-2/5 text-white text-center cursor-pointer'
                             onClick={handleRename}
