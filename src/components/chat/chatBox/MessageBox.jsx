@@ -13,7 +13,7 @@ let socket, selectedChatCompare
 const MessageBox = () => {
 
     const { user } = useAuth()
-    const { chats, setChats, selectedChat, notifications, setNotifications, fetchChats } = useChat()
+    const { chats, setChats, selectedChat, notifications, setNotifications, } = useChat()
     const [newMessage, setNewMessage] = useState('')
     const [messages, setMessages] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -38,7 +38,8 @@ const MessageBox = () => {
 
     useEffect(() => {
         socket.on('messageRecieved', (newMessage) => {
-            if (!selectedChat || selectedChatCompare._id !== newMessage.chat._id) {
+            if (!selectedChatCompare || selectedChatCompare?._id !== newMessage.chat._id) {
+                // console.log('in message box notifications', selectedChatCompare, newMessage)
                 setNotifications([newMessage, ...notifications])
             } else {
                 setMessages([...messages, newMessage]);

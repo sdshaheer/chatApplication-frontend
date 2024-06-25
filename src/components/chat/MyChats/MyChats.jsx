@@ -96,7 +96,7 @@ const SingleChat = ({ chat, notifications, setNotifications }) => {
     const isSelectedChat = selectedChat && selectedChat._id === chat._id;
     const newMessages = notifications?.filter((message) => message.chat?._id === chat?._id)
 
-    // console.log('in single chat', notifications, newMessages, chat?._id)
+    console.log('in single chat', notifications, newMessages, chat?._id)
     const handleSelectChat = () => {
         const filteredNotifications = notifications?.filter((message) => message.chat?._id !== chat?._id)
         setNotifications([...filteredNotifications])
@@ -119,7 +119,7 @@ const SingleChat = ({ chat, notifications, setNotifications }) => {
                 <div className='font-semibold '>{getChatName(chat, user)}</div>
                 <div className='flex justify-between items-center'>
                     <div className=''>{newMessages?.length > 0 ? newMessages?.[0]?.content?.substring(0, 15) : chat?.latestMessage?.content?.substring(0, 15)}</div>
-                    {newMessages?.length > 0 &&
+                    {selectedChat?._id !== chat?._id && newMessages?.length > 0 &&
                         <div className='rounded-full w-5 h-5 bg-green-600 flex justify-center items-center text-[12px] text-white'>{newMessages?.length}</div>
                     }
                 </div>
