@@ -43,7 +43,7 @@ const MyChats = () => {
 
     return (
         <>
-            <div className='h-full flex flex-col p-3 gap-5'>
+            <div className='h-full flex flex-col p-3 gap-5 rounded-md'>
                 <div className='flex justify-between'>
                     <span className='text-[20px]'>My Chats</span>
                     <div

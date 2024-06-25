@@ -17,12 +17,7 @@ const ChatBox = () => {
             {selectedChat &&
                 <ChatBoxHeader handleMoveBack={handleMoveBack} />
             }
-            <div className='flex-grow bg-white rounded-md'>
-                {!selectedChat ?
-                    <div className='h-full flex justify-center items-center text-[20px] text-gray-500'>Click on a user to start Chatting</div>
-                    : <MessageBox />
-                }
-            </div>
+            <MessageBox />
         </div>
     )
 }

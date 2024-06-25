@@ -20,7 +20,7 @@ const ChatBoxHeader = ({ handleMoveBack }) => {
 
     return (
         <>
-            <div className='flex justify-between items-center border-2 p-2 rounded-md  bg-slate-200'>
+            <div className='flex justify-between items-center p-2 rounded-md  bg-slate-300'>
                 <div className='flex items-center gap-3'>
                     <div className='block md:hidden cursor-pointer' onClick={handleMoveBack}>
                         <IoIosArrowRoundBack size={24} />

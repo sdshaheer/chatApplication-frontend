@@ -18,7 +18,10 @@ const UpdateGroupChat = ({ isOpen, setIsOpen }) => {
       <ModalWrapper open={isOpen} onClose={handleClose}>
         <div className='flex flex-col gap-2'>
           <div className='flex gap-2 '>
-            <ChatHeader selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+            <ChatHeader
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
           </div>
           {selectedTab === 1 &&
             <div>

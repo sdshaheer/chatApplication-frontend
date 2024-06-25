@@ -100,46 +100,53 @@ const MessageBox = () => {
     }
 
     return (
-        <div className='h-full flex flex-col justify-between rounded-md bg-slate-300'>
-            {isLoading &&
-                <div className='w-full h-full flex justify-center items-center'>
-                    <Box sx={{ display: 'flex' }}>
-                        <CircularProgress />
-                    </Box>
+        <>
+            {!selectedChat ?
+                <div className='h-full flex justify-center items-center text-[20px] text-gray-500'>Click on a user to start Chatting</div>
+                :
+                <div className='h-full flex flex-col justify-between rounded-md bg-slate-300'>
+                    {isLoading &&
+                        <div className='w-full h-full flex justify-center items-center'>
+                            <Box sx={{ display: 'flex' }}>
+                                <CircularProgress />
+                            </Box>
+                        </div>
+                    }
+                    <div className='w-full h-full relative'>
+                        <div className='w-full h-full flex flex-col gap-1 p-2 overflow-y-auto absolute'>
+                            {messages?.map((message, index) => {
+                                return (
+                                    <div key={index} className='w-full'>
+                                        <SingleMessage
+                                            index={index}
+                                            messages={messages}
+                                            message={message}
+                                            user={user}
+                                        />
+                                    </div>
+                                )
+                            })}
+                            <div ref={chatEndRef} />
+                        </div>
+                    </div>
+                    <div className='w-full flex items-center relative'>
+                        <input
+                            type="text"
+                            placeholder='Type a message'
+                            className='flex-1 border rounded p-2 m-2  outline-none'
+                            value={newMessage}
+                            onChange={handleMessageChange}
+                            onKeyPress={handleKeyPress}
+
+                        />
+                        {newMessage.trim() !== '' &&
+                            <VscSend className='absolute right-5 cursor-pointer' onClick={handleSendMessage} />
+                        }
+                    </div>
                 </div>
             }
-            <div className='w-full h-full relative'>
-                <div className='w-full h-full flex flex-col gap-1 p-2 overflow-y-auto absolute'>
-                    {messages?.map((message, index) => {
-                        return (
-                            <div key={index} className='w-full'>
-                                <SingleMessage
-                                    index={index}
-                                    messages={messages}
-                                    message={message}
-                                    user={user}
-                                />
-                            </div>
-                        )
-                    })}
-                    <div ref={chatEndRef} />
-                </div>
-            </div>
-            <div className='w-full flex items-center relative'>
-                <input
-                    type="text"
-                    placeholder='Type a message'
-                    className='flex-1 border rounded p-2 m-2  outline-none'
-                    value={newMessage}
-                    onChange={handleMessageChange}
-                    onKeyPress={handleKeyPress}
+        </>
 
-                />
-                {newMessage.trim() !== '' &&
-                    <VscSend className='absolute right-5 cursor-pointer' onClick={handleSendMessage} />
-                }
-            </div>
-        </div>
     )
 }
 
