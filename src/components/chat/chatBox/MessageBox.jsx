@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { VscSend } from "react-icons/vsc";
 import axios from 'axios'
-import { basePath } from '../../../utils/basePath';
+import { basePath, socketPath } from '../../../utils/basePath';
 import { useAuth } from '../../../context/AuthContext';
 import { useChat } from '../../../context/ChatContext';
 import { isSameSender, isLastMessage } from '../../../config/ChatLogics';
 import { CircularProgress, Box } from '@mui/material';
 import io from 'socket.io-client'
 
-const ENDPOINT = 'http://localhost:8000'
 let socket, selectedChatCompare
 
 const MessageBox = () => {
@@ -32,7 +31,7 @@ const MessageBox = () => {
 
 
     useEffect(() => {
-        socket = io(ENDPOINT)
+        socket = io(socketPath)
         socket.emit('setup', user)
         socket.on('connected', () => setSocketConnected(true))
     }, [])
