@@ -16,7 +16,7 @@ const ChatPage = () => {
                 <div className={`bg-white w-full m-2 rounded-md ${selectedChat ? 'hidden md:block' : ''} md:w-[30%]`}>
                     <MyChats />
                 </div>
-                <div className={`bg-blue-100 w-full ${selectedChat ? 'block' : 'hidden'} md:block md:w-[70%] m-2 rounded-md ml-0`}>
+                <div className={`${selectedChat ? 'bg-blue-100' : 'bg-white'} w-full ${selectedChat ? 'block' : 'hidden'} md:block md:w-[70%] m-2 rounded-md ml-0`}>
                     <ChatBox />
                 </div>
             </div >
