@@ -54,9 +54,9 @@ const TopBar = () => {
                     Chat Application
                 </div>
                 <div className='flex justify-between items-center gap-2'>
-                    <div>
+                    {/* <div>
                         <IoIosNotifications size={24} />
-                    </div>
+                    </div> */}
                     <div className='mr-2'>
                         <Dropdown overlay={menu} placement="bottomLeft" className='cursor-pointer'>
                             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
