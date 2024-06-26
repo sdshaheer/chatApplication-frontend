@@ -10,17 +10,6 @@ import axios from 'axios'
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import defaultImage from '../../../assets/singleUser.jpg'
 
-const style = {
-    position: 'absolute',
-    top: '40%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderRadius: '5px',
-    boxShadow: 24,
-    p: 1,
-};
 
 export default function Profile({ openProfile, setOpenProfile }) {
 
@@ -100,7 +89,7 @@ export default function Profile({ openProfile, setOpenProfile }) {
                     <img
                         src={image || userDetails?.picture || defaultImage}
                         alt="profile"
-                        className="rounded-full w-40 h-40 object-cover"
+                        className="rounded-full w-20 h-20 md:w-40 md:h-40 object-cover"
                     />
                     <input
                         type="file"
@@ -111,13 +100,14 @@ export default function Profile({ openProfile, setOpenProfile }) {
                     />
                     <label
                         htmlFor="upload"
-                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-40 h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left-[31.5%]"
+                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-20 h-20 md:w-40 md:h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left-[37%] md:left-[31.5%]"
+
                     >
                         <FaCamera className="text-white text-xl" />
                     </label>
                 </div>
                 <div className='flex flex-col m-5 '>
-                    <div className='flex  items-center gap-3 text-[18px] font-sans'>
+                    <div className='flex  items-center gap-3 md:text-[18px] font-sans'>
                         <span>Name :</span>
                         {isEdit ? <input
                             name="name"
@@ -136,9 +126,9 @@ export default function Profile({ openProfile, setOpenProfile }) {
                             />
                         }
                     </div>
-                    <div className='flex gap-3 text-[18px] '>
-                        <span>Email :</span>
-                        <span>{userDetails?.email}</span>
+                    <div className='flex gap-3 md:text-[18px] '>
+                        <span >Email :</span>
+                        <span >{userDetails?.email}</span>
                     </div>
                 </div>
             </div>

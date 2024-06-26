@@ -18,7 +18,7 @@ const HomePage = () => {
 
     return (
         <div className='flex justify-center items-center'>
-            <div className='flex flex-col justify-center items-center bg-white p-8 border rounded-lg sm:w-3/6 md:w-2/6 mt-20 gap-10'>
+            <div className='flex flex-col justify-center items-center bg-white p-8 border rounded-lg w-3/4 md:w-2/6 mt-20 gap-10'>
                 <div className='w-full flex flex-col md:flex md:flex-row gap-2'>
                     <div className={`${baseStyle} ${isLoginPage ? 'bg-blue-100' : ''}`} onClick={() => handleChange('login')}>Login</div>
                     <div className={`${baseStyle} ${!isLoginPage ? 'bg-blue-100' : ''}`} onClick={() => handleChange('signUp')}>Sign Up</div>
