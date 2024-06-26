@@ -64,7 +64,7 @@ const CustomUserList = ({ users, isLoading, selectedUsers, handleUserSelect, exi
                             className='border rounded w-4 h-4 px-3 cursor-pointer'
                             checked={isInputChecked(user?._id) || checkUserExistsInGroup(user)}
                             disabled={checkUserExistsInGroup(user)}
-                            onClick={(e) => e.stopPropagation()}
+                        // onClick={(e) => e.stopPropagation()}
                         />
                     </div>
                 )

@@ -150,7 +150,7 @@ const UserList = ({ users, selectedUser, handleUserSelect }) => {
                             type='radio'
                             className='border rounded w-4 h-4 px-3 cursor-pointer'
                             checked={selectedUser?._id === user?._id}
-                            onClick={(e) => e.stopPropagation()}
+                        // onClick={(e) => e.stopPropagation()}
                         />
                     </div>
                 )
