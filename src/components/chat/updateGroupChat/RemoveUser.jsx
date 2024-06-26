@@ -17,7 +17,12 @@ const RemoveUser = ({ handleClose }) => {
     const [isGroupLoading, setIsGroupLoading] = useState(false)
 
     useEffect(() => {
-        setGroupUsers([...selectedChat?.users])
+        // setGroupUsers([...selectedChat?.users])
+        if (selectedChat) {
+            const filteredUsers = selectedChat?.users?.filter((groupUser) => groupUser?.uuid !== user?.uid)
+            setGroupUsers([...filteredUsers])
+
+        }
     }, [selectedChat])
 
     const handleChange = (e) => {
