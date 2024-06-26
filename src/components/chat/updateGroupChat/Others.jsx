@@ -105,7 +105,7 @@ const Others = ({ handleClose }) => {
                     <img
                         src={image || selectedChat?.groupPicture || defaultImage}
                         alt="profile"
-                        className="rounded-full w-40 h-40 object-cover"
+                        className="rounded-full w-20 h-20 md:w-40 md:h-40 object-cover"
                     />
                     <input
                         type="file"
@@ -116,7 +116,7 @@ const Others = ({ handleClose }) => {
                     />
                     <label
                         htmlFor="upload"
-                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-40 h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left-[31%]"
+                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-40 h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left[37%] md:left-[31%]"
                     >
                         <FaCamera className="text-white text-xl" />
                     </label>
