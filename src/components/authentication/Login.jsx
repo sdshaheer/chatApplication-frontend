@@ -53,7 +53,6 @@ const Login = () => {
         try {
             setIsLoading(true)
             const response = await doSignInWithEmailAndPassword(data.email, data.password)
-            console.log('sign in with email and password', response)
             navigate('/chats')
         } catch (error) {
             console.error('error in logging with email and password', error)
@@ -67,7 +66,6 @@ const Login = () => {
         e.preventDefault()
         try {
             const firebaseResponse = await doSignInWithGoogle()
-            console.log('sign in with google account', firebaseResponse)
             const dataViaGmailLogin = {
                 uuid: firebaseResponse?.user?.uid,
                 name: firebaseResponse?.user?.displayName,

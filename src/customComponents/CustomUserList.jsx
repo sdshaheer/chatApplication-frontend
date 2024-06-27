@@ -32,7 +32,6 @@ const CustomUserList = ({ users, isLoading, selectedUsers, handleUserSelect, exi
         return selectedUsers?.find((user) => user?._id === userId) || false
     }
 
-    console.log('users', selectedUsers)
     return (
         <div className='overflow-y-auto gap-1' style={{ height: '300px' }}>
             {isLoading &&

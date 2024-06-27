@@ -59,7 +59,6 @@ const AddUser = ({ handleClose }) => {
                 { ...payload },
                 { headers: { Authorization: user?.accessToken } }
             )
-            console.log('response ...', response)
             setSelectedChat(response?.data)
             handleClose()
             toast.success('Users added successfully')

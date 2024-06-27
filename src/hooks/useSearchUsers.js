@@ -19,7 +19,6 @@ const useSearchUsers = (searchValue, delay) => {
             )
             // setUsers([...response.data, ...response.data, ...response.data, ...response.data, ...response.data])
             setUsers([...response.data])
-            console.log('response of search users', response.data)
         } catch (error) {
             console.log('error in searching users ', error)
         } finally {

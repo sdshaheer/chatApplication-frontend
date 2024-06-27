@@ -14,7 +14,6 @@ const HomePage = () => {
         }
     }
 
-    console.log('isLogin', isLoginPage)
 
     return (
         <div className='flex justify-center items-center'>

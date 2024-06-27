@@ -39,7 +39,6 @@ const MessageBox = () => {
     useEffect(() => {
         socket.on('messageRecieved', (newMessage) => {
             if (!selectedChatCompare || selectedChatCompare?._id !== newMessage.chat._id) {
-                // console.log('in message box notifications', selectedChatCompare, newMessage)
                 setNotifications([newMessage, ...notifications])
             } else {
                 setMessages([...messages, newMessage]);
