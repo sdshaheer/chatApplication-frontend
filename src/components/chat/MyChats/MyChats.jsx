@@ -96,7 +96,6 @@ const SingleChat = ({ chat, notifications, setNotifications }) => {
     const isSelectedChat = selectedChat && selectedChat._id === chat._id;
     const newMessages = notifications?.filter((message) => message.chat?._id === chat?._id)
 
-    console.log('in single chat', notifications, newMessages, chat?._id)
     const handleSelectChat = () => {
         const filteredNotifications = notifications?.filter((message) => message.chat?._id !== chat?._id)
         setNotifications([...filteredNotifications])
