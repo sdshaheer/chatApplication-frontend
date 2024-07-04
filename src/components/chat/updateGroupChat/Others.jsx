@@ -79,7 +79,7 @@ const Others = ({ handleClose }) => {
         if (e.target.files[0]) {
             const file = e.target.files[0];
             const storageRef = ref(storage, `groupChat/${selectedChat?._id}/${file.name}`);
-
+            setIsLoading(true)
             try {
                 await uploadBytes(storageRef, file);
                 const url = await getDownloadURL(storageRef);
@@ -93,6 +93,8 @@ const Others = ({ handleClose }) => {
                 setSelectedChat(response?.data)
             } catch (error) {
                 console.error("Error uploading file:", error);
+            } finally {
+                setIsLoading(false)
             }
         }
     };
@@ -116,7 +118,10 @@ const Others = ({ handleClose }) => {
                     />
                     <label
                         htmlFor="upload"
-                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-20 h-20 md:w-40 md:h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left[37%] md:left-[31%]"
+                        // className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-20 h-20 md:w-40 md:h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left[37%] md:left-[31%]"
+                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-20 h-20 md:w-40 md:h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 "
+                        style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+
                     >
                         <FaCamera className="text-white text-xl" />
                     </label>

@@ -100,7 +100,9 @@ export default function Profile({ openProfile, setOpenProfile }) {
                     />
                     <label
                         htmlFor="upload"
-                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-20 h-20 md:w-40 md:h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left-[37%] md:left-[31.5%]"
+                        // className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-20 h-20 md:w-40 md:h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 left-[37%] md:left-[31.5%]"
+                        className="absolute bg-gray-500 inset-0 flex justify-center items-center bg-black bg-opacity-50 w-20 h-20 md:w-40 md:h-40 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300 "
+                        style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
 
                     >
                         <FaCamera className="text-white text-xl" />

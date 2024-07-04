@@ -58,7 +58,7 @@ const UserList = ({ users, setDrawerOpen }) => {
                             <div>
                                 <div className='font-semibold '>{user?.name ?? ''}</div>
                                 <div className='flex gap-1'>
-                                    <span className="">{user?.email ?? ''}</span>
+                                    <span className="">{user.email?.length > 23 ? `${user?.email.substring(0, 23)} ...` : user?.email}</span>
                                 </div>
                             </div>
                         </div>

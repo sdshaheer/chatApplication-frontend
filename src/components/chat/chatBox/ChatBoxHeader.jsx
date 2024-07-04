@@ -6,6 +6,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { useChat } from '../../../context/ChatContext';
 import UpdateGroupChat from '../updateGroupChat/UpdateGroupChat';
 import { isGroupAdmin } from '../../../config/ChatLogics';
+import ImageBox from './ImageBox';
 
 const ChatBoxHeader = ({ handleMoveBack }) => {
 
@@ -13,6 +14,7 @@ const ChatBoxHeader = ({ handleMoveBack }) => {
     const { selectedChat } = useChat()
 
     const [isOpen, setIsOpen] = useState(false)
+    const [showImageModal, setShowImageModal] = useState(false)
 
     const handleEdit = () => {
         setIsOpen(true)
@@ -30,7 +32,8 @@ const ChatBoxHeader = ({ handleMoveBack }) => {
                             <img
                                 src={getChatPicture(selectedChat, user)}
                                 alt='profile picture'
-                                className="rounded-full w-8 h-8 object-cover"
+                                className="rounded-full w-8 h-8 object-cover cursor-pointer"
+                                onClick={() => setShowImageModal(true)}
                             />
                         </div>
                         <div>{getChatName(selectedChat, user)}</div>
@@ -43,8 +46,18 @@ const ChatBoxHeader = ({ handleMoveBack }) => {
                 </div>
             </div>
             {isOpen &&
-                <UpdateGroupChat isOpen={isOpen} setIsOpen={setIsOpen} />
+                <UpdateGroupChat
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                />
             }
+            {showImageModal &&
+                <ImageBox
+                    isOpen={showImageModal}
+                    setIsOpen={setShowImageModal}
+                />
+            }
+
         </>
     )
 }
