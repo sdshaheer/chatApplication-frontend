@@ -30,6 +30,7 @@ export const ChatProvider = ({ children }) => {
             const response = await axios.get(`${basePath}/chat/getAllChats`,
                 { headers: { Authorization: user?.accessToken } }
             )
+            console.log(response.data)
             // setChats([...response?.data, ...response?.data, ...response?.data, ...response?.data])
             setChats([...response?.data])
         } catch (error) {

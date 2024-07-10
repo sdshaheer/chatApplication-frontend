@@ -8,7 +8,7 @@ const ChatPage = () => {
     const { selectedChat } = useChat()
 
     return (
-        <div className='w-screen h-screen flex flex-col'>
+        <div className='w-full h-full flex flex-col'>
             <div className='bg-white h-12'>
                 <TopBar />
             </div>

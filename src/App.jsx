@@ -33,7 +33,7 @@ const ProtectedRoute = () => {
 function App() {
 
   return (
-    <div className='w-screen h-screen bg-blue-300'>
+    <div className='w-screen h-screen bg-blue-300 overflow-hidden'>
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path='/' element={<HomePage />} />

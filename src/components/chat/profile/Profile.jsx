@@ -9,6 +9,8 @@ import { basePath } from '../../../utils/basePath'
 import axios from 'axios'
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import defaultImage from '../../../assets/singleUser.jpg'
+import Spinner from '../../../customComponents/Spinner';
+import { toast } from 'react-toastify';
 
 
 export default function Profile({ openProfile, setOpenProfile }) {
@@ -17,6 +19,7 @@ export default function Profile({ openProfile, setOpenProfile }) {
     const [image, setImage] = useState('')
     const [userDetails, setUserDetails] = useState()
     const [isEdit, setIsEdit] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         getUserDetails()
@@ -39,6 +42,7 @@ export default function Profile({ openProfile, setOpenProfile }) {
             const storageRef = ref(storage, `${user?.uid}/${file.name}`);
 
             try {
+                setIsLoading(true)
                 await uploadBytes(storageRef, file);
                 const url = await getDownloadURL(storageRef);
                 setImage(url);
@@ -48,8 +52,11 @@ export default function Profile({ openProfile, setOpenProfile }) {
                     { headers: { Authorization: user?.accessToken } }
                 )
                 getUserDetails()
+                toast.success('profile image changed successfully')
             } catch (error) {
                 console.error("Error uploading file:", error);
+            } finally {
+                setIsLoading(false)
             }
         }
     };
@@ -77,6 +84,7 @@ export default function Profile({ openProfile, setOpenProfile }) {
 
     return (
         <ModalWrapper open={openProfile} onClose={() => setOpenProfile(false)}>
+            {isLoading && <Spinner />}
             <div className='flex flex-col gap-3 w-full'>
                 <div className='flex justify-end'>
                     <IoClose

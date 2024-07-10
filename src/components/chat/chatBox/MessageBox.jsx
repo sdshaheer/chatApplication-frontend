@@ -27,6 +27,7 @@ const MessageBox = () => {
             fetchMessages()
             selectedChatCompare = selectedChat
         }
+        return () => selectedChatCompare = null
     }, [selectedChat])
 
 
@@ -44,6 +45,11 @@ const MessageBox = () => {
                 setMessages([...messages, newMessage]);
             }
         })
+
+        return () => {
+            socket.off('messageReceived');
+        };
+
     })
 
     useEffect(() => {
@@ -53,7 +59,7 @@ const MessageBox = () => {
     }, [messages]);
 
     const handleMessageChange = (e) => {
-        setNewMessage(e.target.value)
+        setNewMessage(e.target.value);
     }
 
     const fetchMessages = async () => {
@@ -101,7 +107,7 @@ const MessageBox = () => {
     return (
         <>
             {!selectedChat ?
-                <div className='h-full flex justify-center items-center text-[20px] text-gray-500'>Click on a user to start Chatting</div>
+                <div className='h-full flex justify-center items-center text-[20px] text-gray-500'>Select user from My Chats</div>
                 :
                 <div className='h-full flex flex-col justify-between rounded-md bg-slate-300'>
                     {isLoading &&

@@ -9,7 +9,6 @@ import { useChat } from '../../../context/ChatContext'
 import { FaCamera } from 'react-icons/fa';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from '../../../firebase/firebase';
-import { MdOutlineModeEditOutline } from "react-icons/md";
 import defaultImage from '../../../assets/groupImage.jpeg'
 
 const Others = ({ handleClose }) => {
@@ -91,6 +90,7 @@ const Others = ({ handleClose }) => {
                 )
                 fetchChats()
                 setSelectedChat(response?.data)
+                toast.success('Group profile changed successfully')
             } catch (error) {
                 console.error("Error uploading file:", error);
             } finally {
